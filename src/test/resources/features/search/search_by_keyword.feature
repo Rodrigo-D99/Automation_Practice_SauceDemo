@@ -2,12 +2,6 @@ Feature: Search by keyword
 
   @green
   Scenario: Searching for 'green'
-    Given Sergey is researching things on the internet
-    When he looks up "green"
-    Then he should see information about "green"
-
-  @red
-  Scenario: Searching for 'red'
-    Given Sergey is researching things on the internet
-    When he looks up "red"
-    Then he should see information about "red"
+    Given Sergey opens sauce demo login page
+    When he login with credentials "standard_user" "secret_sauce"
+    Then he should see sauce demo home page
