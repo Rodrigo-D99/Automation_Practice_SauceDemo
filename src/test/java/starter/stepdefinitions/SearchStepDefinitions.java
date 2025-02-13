@@ -4,10 +4,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.actions.Click;
 import starter.navigation.NavigateTo;
-import starter.search.EnterUserCredentials;
-import starter.search.LoginForm;
+import starter.search.*;
+
 
 public class SearchStepDefinitions {
 
@@ -19,17 +20,23 @@ public class SearchStepDefinitions {
     @When("{actor} login with credentials {string} {string}")
     public void searchesFor(Actor actor, String user, String pass) {
         actor.attemptsTo(
-                EnterUserCredentials.userName(user).then(EnterUserCredentials.userPass(pass)).then(Click.on(LoginForm.LOGIN_BUTTON))
-        );
+                EnterUserCredentials.userName(user).then(EnterUserCredentials.userPass(pass))
+                        .then(Click.on(LoginForm.LOGIN_BUTTON)));
+
+    }
+
+    @Then("{actor} click on add product to cart")
+    public void should_see_information_about(Actor actor) {
         try {
-            Thread.sleep(4000);
-        }catch (Exception e ){
+            actor.attemptsTo(GetProducts.onList());
+            Thread.sleep(3000);
+            actor.attemptsTo(GetProducts.onList());
+            Thread.sleep(1000);
+        } catch (Exception e) {
             System.out.println("error");
         }
     }
 
-    @Then("{actor} should see sauce demo home page")
-    public void should_see_information_about(Actor actor) {
-
-    }
 }
+
+
