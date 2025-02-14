@@ -9,10 +9,14 @@ import net.serenitybdd.screenplay.actions.Click;
 import java.util.List;
 
 public class GetProducts implements Task {
+    private static List<WebElementFacade> products;
+
     @Override
     public <T extends Actor> void performAs(T act) {
         List<WebElementFacade> products= InventoryPage.INVENTORY_ITEMS.resolveAllFor(act);
         System.out.println("Número de productos encontrados: " + products.size()+"\n"+products.get(0).getElement());
+        GetProducts.products = products;
+
         for(WebElementFacade product:products){
             String productName=product.findBy(InventoryPage.ITEM_NAME.getCssOrXPathSelector()).getText();
             String productPrice=product.findBy(InventoryPage.ITEM_PRICE.getCssOrXPathSelector()).getText();

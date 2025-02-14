@@ -10,6 +10,6 @@ public class InventoryPage {
     public static Target ITEM_PRICE =  Target.the("price of item").locatedBy(".inventory_item_price");
     public static Target CART_BTN_ADD =  Target.the("cart button add").locatedBy(".btn_inventory");
 
-    public static Target CART_BTN_RMV =  Target.the("cart button remove").locatedBy(".btn .btn_secondary .btn_small .btn_inventory ");
+    public static Target CART_BTN =  Target.the("cart button").locatedBy(".shopping_cart_container");
 
 }
